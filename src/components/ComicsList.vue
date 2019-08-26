@@ -17,7 +17,7 @@ export default {
     axios.get(`${BACKEND_URL}/comics/list`)
       .then( ({data}) => {
         for (let item of data) {
-          this.items.push({path: 'comics/episode_list/'+item, title: item})        
+          this.items.push({path: 'comics/episode_list?title='+item, title: item})        
         }
       })
   },

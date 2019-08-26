@@ -8,6 +8,7 @@ import Login from './views/Login.vue'
 import Comics from './views/Comics.vue'
 import ComicsList from './components/ComicsList.vue'
 import EpisodeList from './components/EpisodeList.vue'
+import Episode from './components/Episode.vue'
 
 Vue.use(Router)
 
@@ -26,7 +27,7 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home,
-	  beforeEnter: requireAuth('/')
+      beforeEnter: requireAuth('/')
     },
     {
       path: '/login',
@@ -40,7 +41,7 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
-	  beforeEnter: requireAuth('/about')
+      beforeEnter: requireAuth('/about')
     },
     {
       path: '/comics',
@@ -48,10 +49,19 @@ export default new Router({
       component: Comics,
       children: [
         { path: '/',
-            component: ComicsList
+          component: ComicsList
         },
-        { path: 'episode_list/:title',
-            component: EpisodeList
+        { path: 'episode_list',
+          component: EpisodeList,
+          props(route) {
+            return route.query || {}
+          }
+        },
+        { path: 'episode',
+          component: Episode,
+          props(route) {
+            return route.query || {}
+          }
         }
       ]
     }
