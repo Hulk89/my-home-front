@@ -37,6 +37,19 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
 	  beforeEnter: requireAuth('/about')
+    },
+    {
+      path: '/comics',
+      name: 'comics',
+      component: { template: '<router-view></router-view>' },
+      children: [
+        { path: '/',
+            component: { template: '<div>Comics List<router-link to="comics/episode_list/1">to</router-link></div>' }
+        },
+        { path: 'episode_list/:id',
+            component: { template: '<div>Episode List<br/>id:{{this.$route.params.id}}</div>' }
+        }
+      ]
     }
   ]
 })
