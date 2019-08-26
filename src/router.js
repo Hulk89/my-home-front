@@ -2,8 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import store from './store' 
+
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
+import Comics from './views/Comics.vue'
+import ComicsList from './components/ComicsList.vue'
+import EpisodeList from './components/EpisodeList.vue'
 
 Vue.use(Router)
 
@@ -41,13 +45,13 @@ export default new Router({
     {
       path: '/comics',
       name: 'comics',
-      component: { template: '<router-view></router-view>' },
+      component: Comics,
       children: [
         { path: '/',
-            component: { template: '<div>Comics List<router-link to="comics/episode_list/1">to</router-link></div>' }
+            component: ComicsList
         },
-        { path: 'episode_list/:id',
-            component: { template: '<div>Episode List<br/>id:{{this.$route.params.id}}</div>' }
+        { path: 'episode_list/:title',
+            component: EpisodeList
         }
       ]
     }
