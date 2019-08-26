@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{title}}</h1><h2>{{episode_id}}</h2>
-    <img v-for="(index, image) in images" :src="image">
+    <img v-for="image in images" :src="image">
   </div>
 </template>
 
@@ -23,12 +23,13 @@ export default {
             axios.post(`${BACKEND_URL}/comics/image`,
                        {title: this.title,
                         ep_id: this.episode_id,
-                        img_filename: filename})
+                        img_filename: filename},
+                       {responseType: "blob"})
               .then((response) => {
                 console.log(response)
-                var b64Response = btoa(response.data)
-                //const blob = new Blob([response], {type: "image/jpeg"})
-                self.images.push('data:image/jpeg;base64,' + b64Response)
+                const blob = new Blob([response.data], {type: "image/jpeg"})
+                const url = window.URL.createObjectURL(blob)
+                self.images.push(url)
               })
         }
     })
