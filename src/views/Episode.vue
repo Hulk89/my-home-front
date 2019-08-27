@@ -1,5 +1,5 @@
 <template>
-  <v-layout row wrap>
+  <v-layout column>
     <v-flex xs12>
       <h1>{{title}}-{{episode_id}}</h1>
     </v-flex>
@@ -7,11 +7,15 @@
     <v-flex xs12 v-for="(item, key) in items" :key="key">
       <img :src="item.src"/>
     </v-flex>
-    <v-flex xs6>
-      <v-btn text :to='prev_ep()'>prev</v-btn>
-    </v-flex>
-    <v-flex xs6>
-      <v-btn text :to='next_ep()'>next</v-btn>
+    <v-flex xs12>
+      <v-layout row>
+        <v-flex xs6>
+          <v-btn text :to='prev_ep()'>prev</v-btn>
+        </v-flex>
+        <v-flex xs6>
+          <v-btn text :to='next_ep()'>next</v-btn>
+        </v-flex>
+      </v-layout>
     </v-flex>
   </v-layout>
 </template>
