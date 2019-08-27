@@ -24,6 +24,11 @@ npm run test
 ```
 npm run lint
 ```
+### Docker run
+
+```
+docker run -p 8080:8080 hulk89/my-home-front:latest
+```
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
