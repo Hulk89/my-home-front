@@ -6,9 +6,9 @@ import store from './store'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Comics from './views/Comics.vue'
-import ComicsList from './components/ComicsList.vue'
-import EpisodeList from './components/EpisodeList.vue'
-import Episode from './components/Episode.vue'
+import ComicsList from './views/ComicsList.vue'
+import EpisodeList from './views/EpisodeList.vue'
+import Episode from './views/Episode.vue'
 
 Vue.use(Router)
 
@@ -49,16 +49,19 @@ export default new Router({
       component: Comics,
       children: [
         { path: '/',
-          component: ComicsList
+          component: ComicsList,
+          beforeEnter: requireAuth('/comics')
         },
         { path: 'episode_list',
           component: EpisodeList,
+          beforeEnter: requireAuth('/comics'),
           props(route) {
             return route.query || {}
           }
         },
         { path: 'episode',
           component: Episode,
+          beforeEnter: requireAuth('/comics'),
           props(route) {
             return route.query || {}
           }
