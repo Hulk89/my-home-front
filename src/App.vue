@@ -6,7 +6,8 @@
         <span class="font-weight-light">Home</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn v-for="item in items" 
+
+      <v-btn v-for="(item, key) in items" :key="key"
           text 
           :to="item.path">
           <span class="mr-2">{{item.name}}</span>

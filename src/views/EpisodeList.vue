@@ -2,7 +2,7 @@
   <div>
     <h1>{{title}}</h1>
     <ul>
-        <li v-for="item in episodes">
+        <li v-for="(item, key) in episodes" :key="key">
             <router-link :to="item.path">{{item.title}}</router-link>
         </li>
     </ul>

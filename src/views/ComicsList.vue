@@ -1,9 +1,9 @@
 <template>
-    <ul>
-        <li v-for="item in items">
-            <router-link :to="item.path">{{item.title}}</router-link>
-        </li>
-    </ul>
+  <v-container fluid>
+    <v-row v-for="(item, key) in items" :key="key">
+      <router-link :to="item.path"><h3>{{item.title}}</h3></router-link>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
