@@ -1,12 +1,14 @@
 <template>
-  <div>
-    <h1>{{title}}</h1>
-    <ul>
-        <li v-for="(item, key) in episodes" :key="key">
-            <router-link :to="item.path">{{item.title}}</router-link>
-        </li>
-    </ul>
-  </div>
+  <v-container>
+    <v-row>
+      <h1>{{title}}</h1>
+    </v-row>
+    <v-row wrap>
+      <v-col cols="2" v-for="(item, key) in episodes" :key="key">
+        <router-link :to="item.path">{{item.title}}</router-link>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
