@@ -27,17 +27,11 @@ export default {
         .catch(({message}) => this.msg = message)
     },
     redirect() {
-      const {search} = window.location
-      console.log(window.location)
-      const tokens = search.replace(/^\?/, '').split('&')
-      const {returnPath} = tokens.reduce((qs, tkn) => {
-        const pair = tkn.split('=')
-        qs[pair[0]] = decodeURIComponent(pair[1])
-        return qs
-      }, {})
-      console.log(returnPath)
+      const {hash} = window.location
+      const uri = decodeURIComponent(hash)
+      const newPath = uri.replace(/^[^?]*\?returnPath=/, '')
       // 리다이렉트 처리
-      this.$router.push(returnPath)
+      this.$router.push(newPath)
     }
   }
 }

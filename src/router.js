@@ -15,12 +15,12 @@ Vue.use(Router)
 const requireAuth = (path) => (from, to, next) => {
     const isAuthenticated = store.getters.getIsAuth
     if (isAuthenticated) return next()
-    next('/login?returnPath=' + path)
+    console.log(from)
+    next('/login?returnPath=' + from.fullPath)
 }
 
 
 export default new Router({
-  mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
