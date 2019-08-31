@@ -12,22 +12,21 @@ import Episode from './views/Episode.vue'
 
 Vue.use(Router)
 
-const requireAuth = (path) => (from, to, next) => {
+const requireAuth = (from, to, next) => {
     const isAuthenticated = store.getters.getIsAuth
     if (isAuthenticated) return next()
-    next('/login?returnPath=' + path)
+    next('/login?returnPath=' + from.fullPath)
 }
 
 
 export default new Router({
-  mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
       name: 'home',
       component: Home,
-      beforeEnter: requireAuth('/')
+      beforeEnter: requireAuth()
     },
     {
       path: '/login',
@@ -41,7 +40,7 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
-      beforeEnter: requireAuth('/about')
+      beforeEnter: requireAuth()
     },
     {
       path: '/comics',
@@ -50,18 +49,18 @@ export default new Router({
       children: [
         { path: '/',
           component: ComicsList,
-          beforeEnter: requireAuth('/comics')
+          beforeEnter: requireAuth()
         },
         { path: 'episode_list',
           component: EpisodeList,
-          beforeEnter: requireAuth('/comics'),
+          beforeEnter: requireAuth()
           props(route) {
             return route.query || {}
           }
         },
         { path: 'episode',
           component: Episode,
-          beforeEnter: requireAuth('/comics'),
+          beforeEnter: requireAuth()
           props(route) {
             return route.query || {}
           }
