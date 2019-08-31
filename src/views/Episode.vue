@@ -1,9 +1,9 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row justify="center">
       <h1>{{title}}-{{episode_id}}</h1>
     </v-row>
-    <v-row v-for="(item, key) in items" :key="key">
+    <v-row v-for="(item, key) in items" :key="key" contain>
       <img :src="item.src"/>
     </v-row>
     <v-row>
@@ -68,11 +68,8 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-    text-align:center;
-}
 img {
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 </style>

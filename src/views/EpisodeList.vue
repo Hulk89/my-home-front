@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row justify="center">
       <h1>{{title}}</h1>
     </v-row>
     <v-row wrap>
