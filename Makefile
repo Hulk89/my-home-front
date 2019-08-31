@@ -4,7 +4,7 @@ endif
 
 DOCKER_IMAGE = hulk89/my-home-front:$(version)
 
-all:
+all: build push
 	@echo DOCKER_IMAGE = $(DOCKER_IMAGE)
 
 build:

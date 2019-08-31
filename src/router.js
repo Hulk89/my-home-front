@@ -12,7 +12,7 @@ import Episode from './views/Episode.vue'
 
 Vue.use(Router)
 
-const requireAuth = (from, to, next) => {
+const requireAuth = () => (from, to, next) => {
     const isAuthenticated = store.getters.getIsAuth
     if (isAuthenticated) return next()
     next('/login?returnPath=' + from.fullPath)
@@ -53,14 +53,14 @@ export default new Router({
         },
         { path: 'episode_list',
           component: EpisodeList,
-          beforeEnter: requireAuth()
+          beforeEnter: requireAuth(),
           props(route) {
             return route.query || {}
           }
         },
         { path: 'episode',
           component: Episode,
-          beforeEnter: requireAuth()
+          beforeEnter: requireAuth(),
           props(route) {
             return route.query || {}
           }
