@@ -1,7 +1,15 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <h1>{{title}}-{{episode_id}}</h1>
+      <v-col cols="3">
+        <v-btn width="100%" text :to='prev_ep()'>prev</v-btn>
+      </v-col>
+      <v-col cols="6">
+        <h1>{{title}}-{{episode_id}}</h1>
+      </v-col>
+      <v-col cols="3">
+        <v-btn width="100%" text :to='next_ep()'>next</v-btn>
+      </v-col>
     </v-row>
     <v-row v-for="(item, key) in items" :key="key" contain>
       <img :src="item.src"/>
